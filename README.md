@@ -39,6 +39,7 @@ module.exports = {
   'secret'    : 'abCdEFghiJkLmnOPQrSTuvwXyz123456787', // the secret associated with the above key
   'bucket'    : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
   'region'    : 'eu-west-1', // the region your S3 billing bucket is in
+  'incomeCategory' : 'XXX', // the three-digit FreeAgent category code, false if not required
   'client': {
     'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
     'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
