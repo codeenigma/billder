@@ -1,0 +1,16 @@
+{
+  "name": "billder",
+  "version": "0.1.0",
+  "description": "Fetches billing information from AWS on demand.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Greg Harvey",
+  "license": "MIT",
+  "dependencies" : {
+    "request-promise" : "latest",
+    "simple-oauth2" : "latest",
+    "aws-billing" : "git@github.com:codeenigma/aws-billing.git"
+  }
+}
