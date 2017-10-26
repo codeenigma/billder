@@ -45,7 +45,7 @@ module.exports = {
     'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
   },
   'auth': {
-    'tokenHost': 'https://api.sandbox.freeagent.com', // the API URI
+    'tokenHost': 'https://api.sandbox.freeagent.com', // the API host
     'tokenPath': '/v2/token_endpoint', // the token endpoint path
   },
   'refresh_token': '12345ABCdeFGhIjKLMn-0987oPQrStuVWXyZ' // refresh token generated when FreeAgent app was authorised
