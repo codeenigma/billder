@@ -90,3 +90,9 @@ module.exports = {
   }
 }
 ```
+
+## Roadmap
+
+* Period handling (we don't have enough data in our S3 bucket yet for testing)
+* Consider using the Node module for the ECB bank rates - https://www.npmjs.com/package/ecb-exchange-rates
+* Base currency configuration
