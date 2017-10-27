@@ -34,12 +34,16 @@ Both files are ignored by Git. Their contents should be as follows:
  */
 
 module.exports = {
+  // AWS config
   'accountId' : 'XXXX-XXXX-XXXX', // the 12 digit AWS account ID for your main account
   'key'       : 'ABCDEFGHIJKLMNOPQRST', // the key belonging to an IAM user with access to billing reports
   'secret'    : 'abCdEFghiJkLmnOPQrSTuvwXyz123456787', // the secret associated with the above key
   'bucket'    : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
   'region'    : 'eu-west-1', // the region your S3 billing bucket is in
+  // General FreeAgent config
   'incomeCategory' : 'XXX', // the three-digit FreeAgent category code, false if not required
+  'costPadding' : 1.02, // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
+  // FreeAgent OAuth / API config
   'client': {
     'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
     'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
