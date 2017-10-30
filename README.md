@@ -45,7 +45,7 @@ module.exports = {
   // General accountancy settings
   'general' : {
     'costPadding' : 1.02 // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
-  }
+  },
   // Provider settings
   'provider' : {
     // Selected accountancy provider (currently only FreeAgent)
