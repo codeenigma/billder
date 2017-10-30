@@ -4,7 +4,7 @@
  */
 
 const config = require('./config');
-var provider_path = './lib/services/' + config.provider + '/';
+var provider_path = './lib/provider/' + config.provider + '/';
 const invoices = require('./lib/billder-make-invoice');
 const auth = require(provider_path + 'billder-auth');
 var syslog = require('modern-syslog');

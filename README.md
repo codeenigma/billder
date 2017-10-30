@@ -97,8 +97,8 @@ module.exports = {
 
 If you wish to add your own accountancy software as a software provider to this base project, you can [create a PR](https://github.com/codeenigma/billder/compare) with (at least) the following to files:
 
-* `lib/services/PROVIDERNAME/billder-auth.js`
-* `lib/services/PROVIDERNAME/billder-make-invoice.js`
+* `lib/provider/PROVIDERNAME/billder-auth.js`
+* `lib/provider/PROVIDERNAME/billder-make-invoice.js`
 
 You may also wish to make some tweaks the the abstraction of API calls or the `authenticate()` method, if you require something it doesn't currently support. This is fine, as long as you don't break what's already there and provide sane defaults in your PR.
 
