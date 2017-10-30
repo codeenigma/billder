@@ -3,18 +3,20 @@
  * Trigger the invoicing process with this script.
  */
 
+const config = require('./config');
+var provider_path = './lib/services/' + config.provider + '/';
 const invoices = require('./lib/billder-make-invoice');
-const auth = require('./lib/billder-freeagent-auth');
+const auth = require(provider_path + 'billder-auth');
 var syslog = require('modern-syslog');
 
 /*
  * Because we expect to run this monthly, we'll assume our
  * access token has expired and get a new one.
  */
-syslog.notice('Billder: refreshing OAuth access token');
-console.log('Billder: refreshing OAuth access token');
+syslog.notice('Billder: authenticating with %s', config.provider);
+console.log('Billder: authenticating with %s', config.provider);
 
-auth.refresh_oauth_token();
+auth.authenticate();
 
 /*
  * Now we have a fresh access token we can make invoices!

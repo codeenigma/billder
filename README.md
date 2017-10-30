@@ -40,10 +40,12 @@ module.exports = {
   'secret'    : 'abCdEFghiJkLmnOPQrSTuvwXyz123456787', // the secret associated with the above key
   'bucket'    : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
   'region'    : 'eu-west-1', // the region your S3 billing bucket is in
-  // General FreeAgent config
+  // Selected accountancy provider (currently only FreeAgent)
+  'provider'  : 'freeagent',
+  // Accountancy provider config (will vary depending on provider)
   'incomeCategory' : 'XXX', // the three-digit FreeAgent category code, false if not required
   'costPadding' : 1.02, // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
-  // FreeAgent OAuth / API config
+  // FreeAgent only - OAuth / API config
   'client': {
     'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
     'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
@@ -90,6 +92,27 @@ module.exports = {
   }
 }
 ```
+
+## Developers
+
+If you wish to add your own accountancy software as a software provider to this base project, you can [create a PR](https://github.com/codeenigma/billder/compare) with (at least) the following to files:
+
+* `lib/services/PROVIDERNAME/billder-auth.js`
+* `lib/services/PROVIDERNAME/billder-make-invoice.js`
+
+You may also wish to make some tweaks the the abstraction of API calls or the `authenticate()` method, if you require something it doesn't currently support. This is fine, as long as you don't break what's already there and provide sane defaults in your PR.
+
+Note, you can also add elements to `config.js` and 'accounts.js` above, but please provide a patch for this README as well if you do.
+
+`PROVIDERNAME` will become the 'provider' element in the 'config' object in `config.js`.
+
+### `billder-auth.js`
+
+Must export an `authenticate()` method. At time of writing this method optionally excepts the input of a flat file where the application can store (a) secret(s). If you need to add more parameters to `authenticate()` you can include that in your PR.
+
+### `billder-make-invoice.js`
+
+Receives the 'account' object and must construct an invoice and submit it to the service provider via their API.
 
 ## Roadmap
 
