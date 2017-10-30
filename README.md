@@ -53,15 +53,17 @@ module.exports = {
     // Accountancy provider config (will vary depending on provider)
     'incomeCategory' : 'XXX', // the three-digit FreeAgent category code, false if not required
     // FreeAgent OAuth / API config
-    'client': {
-      'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
-      'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
-    },
-    'auth': {
-      'tokenHost': 'https://api.sandbox.freeagent.com', // the API host
-      'tokenPath': '/v2/token_endpoint' // the token endpoint path
-    },
-    'refresh_token': '12345ABCdeFGhIjKLMn-0987oPQrStuVWXyZ' // refresh token generated when FreeAgent app was authorised
+    'oauth' : {
+      'client': {
+        'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
+        'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
+      },
+      'auth': {
+        'tokenHost': 'https://api.sandbox.freeagent.com', // the API host
+        'tokenPath': '/v2/token_endpoint' // the token endpoint path
+      },
+      'refresh_token': '12345ABCdeFGhIjKLMn-0987oPQrStuVWXyZ' // refresh token generated when FreeAgent app was authorised
+    }
   }
 }
 ```
