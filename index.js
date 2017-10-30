@@ -4,7 +4,7 @@
  */
 
 const config = require('./config');
-var provider_path = './lib/provider/' + config.provider + '/';
+var provider_path = './lib/provider/' + config.provider.name + '/';
 const invoices = require('./lib/billder-make-invoice');
 const auth = require(provider_path + 'billder-auth');
 var syslog = require('modern-syslog');
@@ -13,8 +13,8 @@ var syslog = require('modern-syslog');
  * Because we expect to run this monthly, we'll assume our
  * access token has expired and get a new one.
  */
-syslog.notice('Billder: authenticating with %s', config.provider);
-console.log('Billder: authenticating with %s', config.provider);
+syslog.notice('Billder: authenticating with %s', config.provider.name);
+console.log('Billder: authenticating with %s', config.provider.name);
 
 auth.authenticate();
 

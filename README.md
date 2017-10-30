@@ -35,26 +35,34 @@ Both files are ignored by Git. Their contents should be as follows:
 
 module.exports = {
   // AWS config
-  'accountId' : 'XXXX-XXXX-XXXX', // the 12 digit AWS account ID for your main account
-  'key'       : 'ABCDEFGHIJKLMNOPQRST', // the key belonging to an IAM user with access to billing reports
-  'secret'    : 'abCdEFghiJkLmnOPQrSTuvwXyz123456787', // the secret associated with the above key
-  'bucket'    : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
-  'region'    : 'eu-west-1', // the region your S3 billing bucket is in
-  // Selected accountancy provider (currently only FreeAgent)
-  'provider'  : 'freeagent',
-  // Accountancy provider config (will vary depending on provider)
-  'incomeCategory' : 'XXX', // the three-digit FreeAgent category code, false if not required
-  'costPadding' : 1.02, // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
-  // FreeAgent only - OAuth / API config
-  'client': {
-    'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
-    'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
+  'aws' : {
+    'accountId' : 'XXXX-XXXX-XXXX', // the 12 digit AWS account ID for your main account
+    'key'       : 'ABCDEFGHIJKLMNOPQRST', // the key belonging to an IAM user with access to billing reports
+    'secret'    : 'abCdEFghiJkLmnOPQrSTuvwXyz123456787', // the secret associated with the above key
+    'bucket'    : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
+    'region'    : 'eu-west-1' // the region your S3 billing bucket is in
   },
-  'auth': {
-    'tokenHost': 'https://api.sandbox.freeagent.com', // the API host
-    'tokenPath': '/v2/token_endpoint', // the token endpoint path
-  },
-  'refresh_token': '12345ABCdeFGhIjKLMn-0987oPQrStuVWXyZ' // refresh token generated when FreeAgent app was authorised
+  // General accountancy settings
+  'general' : {
+    'costPadding' : 1.02 // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
+  }
+  // Provider settings
+  'provider' : {
+    // Selected accountancy provider (currently only FreeAgent)
+    'name' : 'freeagent',
+    // Accountancy provider config (will vary depending on provider)
+    'incomeCategory' : 'XXX', // the three-digit FreeAgent category code, false if not required
+    // FreeAgent OAuth / API config
+    'client': {
+      'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
+      'secret': '123ghjk4567jkhabbja' // your FreeAgent app OAuth secret
+    },
+    'auth': {
+      'tokenHost': 'https://api.sandbox.freeagent.com', // the API host
+      'tokenPath': '/v2/token_endpoint' // the token endpoint path
+    },
+    'refresh_token': '12345ABCdeFGhIjKLMn-0987oPQrStuVWXyZ' // refresh token generated when FreeAgent app was authorised
+  }
 }
 ```
 
