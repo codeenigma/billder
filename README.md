@@ -112,7 +112,7 @@ Must export an `authenticate()` method. At time of writing this method optionall
 
 ### `billder-make-invoice.js`
 
-Receives the 'account' object and must construct an invoice and submit it to the service provider via their API.
+Receives the 'account' object and must construct an invoice and submit it to the service provider via their API. To do so it must export a `make_invoice()` method which will do all the heavy lifting in terms of creating and invoice object and submitting it to the provider.
 
 ## Roadmap
 
