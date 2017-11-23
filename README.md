@@ -1,5 +1,5 @@
 # billder
-Fetches billing information from AWS on demand and creates a FreeAgent invoice.
+Fetches billing information from AWS on demand and creates a FreeAgent invoice. Pull requests welcome, we'd love to support more services.
 
 ## Pre-requisites
 
@@ -117,7 +117,7 @@ A monthly crontab entry might be to run Billder on the second day of each month 
 0 1 2 * *	root	nodejs /opt/billder/index.js
 ```
 
-Note, Billder supports being passed a month to generate invoices for in the form of 'YYYY-MM', e.g. `2017-11`. If you do not pass it a month to process, it will automatically use last month, so if you are in November it will create invoices for October (`2017-10`). Passing Billder a month to process is as simple as this example, which will process June 2016:
+Note, Billder supports being passed a month to generate invoices for in the form of 'YYYY-MM', e.g. `2017-11`. If you do not pass it a month to process, it will automatically use last month, so if you are in November 2017 it will create invoices for October 2017 (`2017-10`) by default. Passing Billder a month to process is as simple as this example, which will process June 2016:
 
 ```bash
 nodejs /opt/billder/index.js 2016-06
@@ -127,14 +127,14 @@ And that's all there is to it!
 
 ## Developers
 
-If you wish to add your own accountancy software as a software provider to this base project, you can [create a PR](https://github.com/codeenigma/billder/compare) with (at least) the following to files:
+If you wish to add your own accountancy software as a software provider to this base project, you can [create a PR](https://github.com/codeenigma/billder/compare) with (at least) the following two files:
 
 * `lib/provider/PROVIDERNAME/billder-auth.js`
 * `lib/provider/PROVIDERNAME/billder-make-invoice.js`
 
-You may also wish to make some tweaks the the abstraction of API calls or the `authenticate()` method, if you require something it doesn't currently support. This is fine, as long as you don't break what's already there and provide sane defaults in your PR.
+You may also wish to make some tweaks to the abstraction of API calls or the `authenticate()` method, if you require something it doesn't currently support. This is fine, as long as you don't break what's already there and provide sane defaults in your PR.
 
-Note, you can also add elements to `config.js` and 'accounts.js` above, but please provide a patch for this README as well if you do.
+Note, you can also add elements to `config.js` and `accounts.js` above, but please provide a patch for this README as well if you do.
 
 `PROVIDERNAME` will become the 'provider' element in the 'config' object in `config.js`.
 
@@ -148,6 +148,5 @@ Receives the 'account' object and must construct an invoice and submit it to the
 
 ## Roadmap
 
-* Period handling (we don't have enough data in our S3 bucket yet for testing)
 * Consider using the Node module for the ECB bank rates - https://www.npmjs.com/package/ecb-exchange-rates
 * Base currency configuration
