@@ -13,7 +13,7 @@ Fetches billing information from AWS on demand and creates a FreeAgent invoice.
 
 ## Installation
 
-1. Clone this repository
+1. Clone this repository (to somewhere sane, probably /opt on a \*nix system)
 2. Install the [latest version of Node](https://nodejs.org/en/download/) for your system (it includes `npm`)
 3. In the cloned directory run `npm install` to install the dependencies
 
@@ -102,6 +102,28 @@ module.exports = {
   }
 }
 ```
+
+## Usage
+
+Once you've installed and configured Billder, the best way to run it is some kind of automated task, either from a continuous integration system (we use Jenkins for orchestration) or in cron on a \*nix server. The command, if you cloned Billder to /opt as suggested above, will look something like this:
+
+```bash
+nodejs /opt/billder/index.js
+```
+
+A monthly crontab entry might be to run Billder on the second day of each month (you want to be sure AWS has had time to complete your data) at 01:00AM server time, and it would look like this:
+
+```bash
+0 1 2 * *	root	nodejs /opt/billder/index.js
+```
+
+Note, Billder supports being passed a month to generate invoices for in the form of 'YYYY-MM', e.g. `2017-11`. If you do not pass it a month to process, it will automatically use last month, so if you are in November it will create invoices for October (`2017-10`). Passing Billder a month to process is as simple as this example, which will process June 2016:
+
+```bash
+nodejs /opt/billder/index.js 2016-06
+```
+
+And that's all there is to it!
 
 ## Developers
 
