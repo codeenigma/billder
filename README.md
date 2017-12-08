@@ -76,29 +76,33 @@ module.exports = {
  *
  * Currency codes: https://dev.freeagent.com/docs/currencies
  *
- * AWS: the AWS account number to look up the billing for
- * FAC: the FreeAgent contact number of the same organisation
- * FAP: (optional) the FreeAgent project to assign the invoice to
- * cur: the 3 letter currency code
- * VAT: either false or a decimal for the sales tax rate
- * EU : boolean to say whether organisation is EC area or not
+ * AWS      : the AWS account number to look up the billing for
+ * FAC      : the FreeAgent contact number of the same organisation
+ * FAP      : (optional) the FreeAgent project to assign the invoice to
+ * currency : the 3 letter currency code
+ * VAT      : either false or a decimal for the sales tax rate
+ * EU       : boolean to say whether organisation is EC area or not
+ * remind   : boolean to enable reminder emails
+ * thank    : boolean to enable thank you emails
  */
 
 module.exports = {
   'Customer1' : {
-    'AWS' : 'XXXX-XXXX-XXXX',
-    'FAC' : '40636',
-    'FAP' : '4417', // invoice will be placed in this project
-    'cur' : 'GBP', // billing in GBP, so we will run a currency conversion
-    'VAT' : 20, // customer will be charged 20% VAT
-    'EU'  : false // customer is not in the EC
+    'AWS'      : 'XXXX-XXXX-XXXX',
+    'FAC'      : '40636',
+    'FAP'      : '4417', // invoice will be placed in this project
+    'currency' : 'GBP', // billing in GBP, so we will run a currency conversion
+    'VAT'      : 20, // customer will be charged 20% VAT
+    'EU'       : false, // customer is not in the EC
+    'thank'    : true // customer will receive a thank you email on payment
   },
   'Customer2' : {
-    'AWS' : 'XXXX-XXXX-XXXX',
-    'FAC' : '40635',
-    'cur' : 'USD',
-    'VAT' : false, // customer will not be charged VAT
-    'EU'  : true // invoice will be marked as EC for VAT purposes
+    'AWS'      : 'XXXX-XXXX-XXXX',
+    'FAC'      : '40635',
+    'currency' : 'USD',
+    'VAT'      : false, // customer will not be charged VAT
+    'EU'       : true, // invoice will be marked as EC for VAT purposes
+    'remind'   : true // customer will get a reminder email
   }
 }
 ```
@@ -148,5 +152,7 @@ Receives the 'account' object and must construct an invoice and submit it to the
 
 ## Roadmap
 
+* Auto-send emails with FreeAgent
 * Consider using the Node module for the ECB bank rates - https://www.npmjs.com/package/ecb-exchange-rates
 * Base currency configuration
+* Other providers!
