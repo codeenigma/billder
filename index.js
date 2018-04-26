@@ -52,7 +52,7 @@ const auth = require(provider_path + 'billder-auth');
 syslog.notice('Billder: authenticating with %s', config.provider.name);
 console.log('Billder: authenticating with %s', config.provider.name);
 
-auth.authenticate(args[0]);
+auth.authenticate(config);
 
 /*
  * Now we have a fresh access token we can make invoices!
@@ -60,5 +60,5 @@ auth.authenticate(args[0]);
 syslog.notice('Billder: starting invoicing run');
 console.log('Billder: starting invoicing run');
 
-invoices.make_invoices(month, args[0]);
+invoices.make_invoices(month, config);
 
