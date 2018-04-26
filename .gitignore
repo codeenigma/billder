@@ -3,3 +3,4 @@ node_modules
 accounts.js
 ce-vm
 ce-vm/*
+package-lock.json

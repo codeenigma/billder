@@ -36,11 +36,12 @@ Both files are ignored by Git. Their contents should be as follows:
 module.exports = {
   // AWS config
   'aws' : {
-    'accountId' : 'XXXX-XXXX-XXXX', // the 12 digit AWS account ID for your main account
-    'key'       : 'ABCDEFGHIJKLMNOPQRST', // the key belonging to an IAM user with access to billing reports
-    'secret'    : 'abCdEFghiJkLmnOPQrSTuvwXyz123456787', // the secret associated with the above key
-    'bucket'    : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
-    'region'    : 'eu-west-1' // the region your S3 billing bucket is in
+    'accountId'    : 'XXXX-XXXX-XXXX', // the 12 digit AWS account ID for your main account
+    'key'          : 'ABCDEFGHIJKLMNOPQRST', // the key belonging to an IAM user with access to billing reports
+    'secret'       : 'abCdEFghiJkLmnOPQrSTuvwXyz123456787', // the secret associated with the above key
+    'bucket'       : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
+    'region'       : 'eu-west-1', // the region your S3 billing bucket is in
+    'accountsFile' : 'accounts' // the filename of the file containing your accounts to bill data (see below)
   },
   // General accountancy settings
   'general' : {
@@ -69,6 +70,8 @@ module.exports = {
 ```
 
 ### `accounts.js`
+
+In this example the accounts data file is `accounts.js` because we have specified '`accounts`' as the filename above under our AWS config. If we had placed `foo` in the `accountsFile` option above, this file would be named `foo.js`.
 
 ```javascript
 /*
@@ -112,19 +115,21 @@ module.exports = {
 Once you've installed and configured Billder, the best way to run it is some kind of automated task, either from a continuous integration system (we use Jenkins for orchestration) or in cron on a \*nix server. The command, if you cloned Billder to /opt as suggested above, will look something like this:
 
 ```bash
-nodejs /opt/billder/index.js
+nodejs /opt/billder/index.js config
 ```
 
 A monthly crontab entry might be to run Billder on the second day of each month (you want to be sure AWS has had time to complete your data) at 01:00AM server time, and it would look like this:
 
 ```bash
-0 1 2 * *	root	nodejs /opt/billder/index.js
+0 1 2 * *	root	nodejs /opt/billder/index.js config
 ```
 
-Note, Billder supports being passed a month to generate invoices for in the form of 'YYYY-MM', e.g. `2017-11`. If you do not pass it a month to process, it will automatically use last month, so if you are in November 2017 it will create invoices for October 2017 (`2017-10`) by default. Passing Billder a month to process is as simple as this example, which will process June 2016:
+Note the `config` argument passed to our script, this is obligatory and it is the filename of our configuration file. By making it an argument, you can have multiple instances of Billder running for different AWS accounts with different config files. Our example assumes the config file is `config.js` and so we pass `config` as the filename to the script.
+
+Billder also supports being passed a month to generate invoices for in the form of 'YYYY-MM', e.g. `2017-11`. If you do not pass it a month to process, it will automatically use last month, so if you are in November 2017 it will create invoices for October 2017 (`2017-10`) by default. Passing Billder a month to process is as simple as this example, which will process June 2016:
 
 ```bash
-nodejs /opt/billder/index.js 2016-06
+nodejs /opt/billder/index.js config 2016-06
 ```
 
 And that's all there is to it!

@@ -9,11 +9,11 @@
   },
   "author": "Greg Harvey",
   "license": "MIT",
-  "dependencies" : {
-    "request-promise" : "latest",
-    "simple-oauth2" : "latest",
-    "modern-syslog" : "latest",
-    "aws-billing" : "git@github.com:codeenigma/aws-billing.git",
-    "pad" : "latest"
+  "dependencies": {
+    "aws-billing": "git@github.com:codeenigma/aws-billing.git",
+    "modern-syslog": "^1.1.4",
+    "pad": "latest",
+    "request-promise": "latest",
+    "simple-oauth2": "latest"
   }
 }
