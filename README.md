@@ -159,6 +159,8 @@ Receives the 'account' object and must construct an invoice and submit it to the
 
 ## Roadmap
 
+* Add a PO number to FreeAgent invoices
+* Add a note to FreeAgent invoices
 * Auto-send emails with FreeAgent
 * Consider using the Node module for the ECB bank rates - https://www.npmjs.com/package/ecb-exchange-rates
 * Base currency configuration
