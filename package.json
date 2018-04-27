@@ -1,6 +1,6 @@
 {
   "name": "billder",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "repository": "git@github.com:codeenigma/billder.git",
   "description": "Fetches billing information from AWS on demand.",
   "main": "index.js",
