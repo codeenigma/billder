@@ -19,7 +19,12 @@ Fetches billing information from AWS on demand and creates a FreeAgent invoice. 
 
 ## Known issues
 
-If you use a 'new' AWS region (such as London or Frankfurt) then because the underlying [aws-billing](https://github.com/codeenigma/aws-billing) library depends on the deprecated [awssum-amazon](https://www.npmjs.com/package/awssum-amazon) library you need to alter `node_modules/awssum-amazon/awssum-amazon.js` and add your region. There is [an open issue](https://github.com/codeenigma/aws-billing/issues/1) in our fork of the project to address this by moving to the [aws-sdk](https://www.npmjs.com/package/aws-sdk) library instead, which is the official SDK.
+If you use a 'new' AWS region (such as London or Frankfurt) then because the underlying [aws-billing](https://github.com/codeenigma/aws-billing) library depends on the deprecated [awssum-amazon](https://www.npmjs.com/package/awssum-amazon) library you need to alter the following files and add your region(s):
+
+* `node_modules/awssum-amazon/awssum-amazon.js`
+* `node_modules/awssum-amazon-ec2/awssum-amazon-ec2.js`
+
+There is [an open issue](https://github.com/codeenigma/aws-billing/issues/1) in our fork of the project to address this by moving to the [aws-sdk](https://www.npmjs.com/package/aws-sdk) library instead, which is the official SDK.
 
 ## Configuration
 
