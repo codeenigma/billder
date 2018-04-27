@@ -24,7 +24,7 @@ You need to create two files:
 1. `config.js`
 2. `accounts.js`
 
-Both files are ignored by Git. Their contents should be as follows:
+These are the *recommended* filenames for these files and both filenames are ignored by Git. However, you may choose to call them anything and also have multiple sets if config and accounts files for different billing scenarios. See the documentation below for details. In any case, the contents of config and accounts files should be as follows:
 
 ### `config.js`
 
@@ -73,13 +73,15 @@ module.exports = {
 
 In this example the accounts data file is `accounts.js` because we have specified '`accounts`' as the filename above under our AWS config. If we had placed `foo` in the `accountsFile` option above, this file would be named `foo.js`.
 
+IMPORTANT, if you are generating a bill for a single account that is *not* a part of an AWS Organization (e.g. not consolidated billing) then the `AWS` property below must be `null`.
+
 ```javascript
 /*
  * Gitignored list of accounts to generate invoices for.
  *
  * Currency codes: https://dev.freeagent.com/docs/currencies
  *
- * AWS      : the AWS account number to look up the billing for
+ * AWS      : the AWS account number to bill or null if not an Organizations account
  * FAC      : the FreeAgent contact number of the same organisation
  * FAP      : (optional) the FreeAgent project to assign the invoice to
  * currency : the 3 letter currency code
@@ -157,6 +159,8 @@ Receives the 'account' object and must construct an invoice and submit it to the
 
 ## Roadmap
 
+* Add a PO number to FreeAgent invoices
+* Add a note to FreeAgent invoices
 * Auto-send emails with FreeAgent
 * Consider using the Node module for the ECB bank rates - https://www.npmjs.com/package/ecb-exchange-rates
 * Base currency configuration
