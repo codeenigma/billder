@@ -24,7 +24,7 @@ You need to create two files:
 1. `config.js`
 2. `accounts.js`
 
-Both files are ignored by Git. Their contents should be as follows:
+These are the *recommended* filenames for these files and both filenames are ignored by Git. However, you may choose to call them anything and also have multiple sets if config and accounts files for different billing scenarios. See the documentation below for details. In any case, the contents of config and accounts files should be as follows:
 
 ### `config.js`
 
