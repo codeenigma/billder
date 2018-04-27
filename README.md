@@ -73,13 +73,15 @@ module.exports = {
 
 In this example the accounts data file is `accounts.js` because we have specified '`accounts`' as the filename above under our AWS config. If we had placed `foo` in the `accountsFile` option above, this file would be named `foo.js`.
 
+IMPORTANT, if you are generating a bill for a single account that is *not* a part of an AWS Organization (e.g. not consolidated billing) then the `AWS` property below must be `null`.
+
 ```javascript
 /*
  * Gitignored list of accounts to generate invoices for.
  *
  * Currency codes: https://dev.freeagent.com/docs/currencies
  *
- * AWS      : the AWS account number to look up the billing for - MUST BE null IF NOT AN AWS ORGANIZATION ACCOUNT
+ * AWS      : the AWS account number to bill or null if not an Organizations account
  * FAC      : the FreeAgent contact number of the same organisation
  * FAP      : (optional) the FreeAgent project to assign the invoice to
  * currency : the 3 letter currency code
