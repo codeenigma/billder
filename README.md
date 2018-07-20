@@ -42,6 +42,7 @@ module.exports = {
     'bucket'       : 'my-billing-bucket', // the name of your S3 bucket containing your billing reports
     'region'       : 'eu-west-1', // the region your S3 billing bucket is in
     'accountsFile' : 'accounts' // the filename of the file containing your accounts to bill data (see below)
+    'organization' : true // boolean flag to say if this is an AWS Organization with multiple accounts or not
   },
   // General accountancy settings
   'general' : {
