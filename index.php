@@ -227,10 +227,15 @@ foreach ($accounts as $client => $data) {
         $tax_type = 'NONE'; // customer VAT exempt (e.g. US-based businesses or UN body)
         log_output("$client is VAT exempt");
       }
+      // We cannot setTaxType if our incomeCategory assumes VAT
+      // @TODO: we ought to check the tax settings of the AccountCode in config.json and react accordingly.
+      if ($tax_type != 'CAPEXOUTPUT2') {
+        $line_item->setTaxType($tax_type);
+      }
       // Build the rest of the line item
       $line_item->setDescription($aws_item['Keys'][0])
           ->setQuantity(1)
-          ->setTaxType($tax_type)
+          ->setAccountCode($config->provider->incomeCategory)
           ->setUnitAmount($line_item_value * $config->general->costPadding);
       $line_items[] = $line_item;
     }
@@ -246,9 +251,9 @@ foreach ($accounts as $client => $data) {
     $invoice->addLineItem($line_item);
   }
   // Optionally set a purchase order number
-  if (isset($data->po)) {
-    $invoice->setReference($data->po);
-    log_output("Purchase order found and set to: $data->po");
+  if (isset($data->PO)) {
+    $invoice->setReference($data->PO);
+    log_output("Purchase order found and set to: $data->PO");
   }
   $invoice->setType('ACCREC')
       ->setCurrencyCode($data->currency)
@@ -257,10 +262,6 @@ foreach ($accounts as $client => $data) {
       ->setContact($contact);
 
   // Save the invoice
-  //$invoice->save();
-  //log_output("Invoice saved for $client with ID: " . $invoice->getGUIDProperty());
-
-  // Handle invoice reminders
-  $reminder = new InvoiceReminder($xero);
-  print_r($reminder);
+  $invoice->save();
+  log_output("Invoice saved for $client with ID: " . $invoice->getInvoiceID());
 }
