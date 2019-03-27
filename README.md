@@ -1,5 +1,5 @@
 # billder
-Fetches billing information from AWS on demand and creates a Xero invoice. Pull requests welcome, we'd love to support more services.
+Fetches billing information from AWS on demand and creates a Xero invoice. Pull requests welcome, we'd love to support more services. At the moment it makes extensive use of the open source community managed [xero-php](https://github.com/calcinai/xero-php) SDK for PHP as well as the [AWS SDK for PHP 3.x](https://docs.aws.amazon.com/aws-sdk-php/v3/api/) to query the AWS Cost Explorer.
 
 ## Pre-requisites
 
