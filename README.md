@@ -44,7 +44,8 @@ These are the *recommended* filenames for these files and both filenames are ign
   },
   // General accountancy settings
   'general' : {
-    'costPadding' : 1.02 // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
+    'costPadding' : 1.02, // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
+    'includeTax'  : false // flag for if we should include sales tax in rebilling or not
   },
   // Provider settings
   'provider' : {

@@ -209,6 +209,12 @@ foreach ($accounts as $client => $data) {
     $line_item = new LineItem($xero);
     // Do any currency calculation
     $line_item_value = round((float)$aws_item['Metrics']['UnblendedCost']['Amount'], 2);
+    // If we're not including tax, zero that line so it gets ignored
+    // @TODO: this would be better if we can filter it in the AWS call
+    // See https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html
+    if (!(bool)$config->general->includeTax && $aws_item['Keys'][0] == 'Tax') {
+      $line_item_value = 0;
+    }
     // No need to create empty lines
     if ($line_item_value > 0) {
       // Convert the currency if necessary
