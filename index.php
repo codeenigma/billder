@@ -67,7 +67,7 @@ else {
 }
 
 // Load the config file
-$config_path = getcwd() . "/" . $argv[0] . ".json";
+$config_path = APP_ROOT . "/" . $argv[0] . ".json";
 if ($config_file = fopen($config_path, "r")) {
   $config = json_decode(fread($config_file, filesize($config_path)));
   fclose($config_file);
@@ -79,7 +79,7 @@ else {
 }
 
 // Load the accounts file
-$accounts_path = getcwd() . "/" . $config->aws->accountsFile . ".json";
+$accounts_path = APP_ROOT . "/" . $config->aws->accountsFile . ".json";
 if ($accounts_file = fopen($accounts_path, "r")) {
   $accounts = json_decode(fread($accounts_file, filesize($accounts_path)));
   fclose($accounts_file);
