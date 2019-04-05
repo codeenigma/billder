@@ -75,7 +75,7 @@ In this example the accounts data file is `accounts.json` because we have specif
  * AWS      : the AWS account number to bill or null if not an Organizations account
  * contact  : the Xero GUID of the contact record for the same organisation
  * currency : the 3 letter ISO currency code
- * VAT      : either false or a decimal for the sales tax rate
+ * VAT      : either false or a decimal for the sales tax rate, e.g. 1.2 for 20%
  * EU       : boolean to say whether organisation is EC area or not
  * PO       : optional Purchase Order number to be included as a reference
  *
@@ -87,7 +87,7 @@ module.exports = {
     'AWS'      : 'XXXXXXXXXXXX',
     'contact'  : '1abc234a-b56c-123a-1a23-423b9729e7a9',
     'currency' : 'GBP', // billing in GBP, so we will run a currency conversion
-    'VAT'      : 20, // customer will be charged 20% VAT
+    'VAT'      : 1.2, // customer will be charged 20% VAT
     'EU'       : false, // customer is not in the EC
     'PO'       : '12345678' // customer provided PO number
   },
