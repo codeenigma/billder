@@ -1,0 +1,7 @@
+{
+    "require": {
+        "aws/aws-sdk-php": "^3.90",
+        "calcinai/xero-php": "^1.8",
+	"curl/curl": "^2.2.0"
+    }
+}
