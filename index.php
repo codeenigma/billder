@@ -50,19 +50,7 @@ if (isset($argv[1])) {
   $target_month = $argv[1];
 }
 else {
-  $month = date('m');
-  $year = date('Y');
-  if ((string)$month == "01") {
-    $month = "12";
-    $year = (int)$year - 1;
-  }
-  else {
-    $month = (int)$month -1;
-    if (strlen($month) < 2) {
-      $month = "0" . (string)$month;
-    }
-  }
-  $target_month = (string)$year . "-" . (string)$month;
+  $target_month = date('Y-m', strtotime('first day of last month'));
   log_output("Did not receive a month to process, using default month: " . $target_month);
 }
 
