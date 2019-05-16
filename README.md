@@ -45,12 +45,15 @@ These are the *recommended* filenames for these files and both filenames are ign
   // General accountancy settings
   'general' : {
     'costPadding' : 1.02, // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
-    'includeTax'  : false // flag for if we should include sales tax in rebilling or not
+    'includeTax'  : false, // flag for if we should include sales tax in rebilling or not
+    'defaultReference' : 'AWS rebilling' // optional default reference to add to all invoices without a PO (see below for PO support)
   },
   // Provider settings
   'provider' : {
     'name' : 'xero', // Selected accountancy provider (currently only FreeAgent)
     'incomeCategory' : 'XXX', // the Xero accounting category code, remove if not required
+    'trackingCategory' : 'Department', // optional tracking category - if you provide one, you must also provide the option to use:
+    'trackingCategoryOption' : 'Systems', // optional tracking option to apply to line items
     'oauth' : {
       'client': {
         'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
