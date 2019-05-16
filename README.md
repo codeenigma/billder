@@ -85,7 +85,7 @@ In this example the accounts data file is `accounts.json` because we have specif
  * Note, you need to remove this doc block and the inline comments if you use this as a template.
  */
 
-module.exports = {
+{
   'Customer1' : {
     'AWS'      : 'XXXXXXXXXXXX',
     'contact'  : '1abc234a-b56c-123a-1a23-423b9729e7a9',
