@@ -6,6 +6,7 @@ use XeroPHP\Models\Accounting\Invoice;
 use XeroPHP\Models\Accounting\InvoiceReminder;
 use XeroPHP\Models\Accounting\Invoice\LineItem;
 use XeroPHP\Models\Accounting\Contact;
+use XeroPHP\Models\Accounting\TrackingCategory;
 use XeroPHP\Application\PrivateApplication;
 
 //define('DS', DIRECTORY_SEPARATOR);
@@ -230,6 +231,13 @@ foreach ($accounts as $client => $data) {
       if ($tax_type != 'CAPEXOUTPUT2') {
         $line_item->setTaxType($tax_type);
       }
+      // Optionally handle tracking category
+      if (isset($config->provider->trackingCategory)) {
+        $tracking = new TrackingCategory($xero);
+	$tracking->setName($config->provider->trackingCategory)
+          ->setOption($config->provider->trackingCategoryOption);
+        $line_item->addTracking($tracking);
+      }
       // Build the rest of the line item
       $line_item->setDescription($aws_item['Keys'][0])
           ->setQuantity(1)
@@ -250,8 +258,12 @@ foreach ($accounts as $client => $data) {
   }
   // Optionally set a purchase order number
   if (isset($data->PO)) {
-    $invoice->setReference($data->PO);
+    $invoice->setReference('PO: ' . $data->PO);
     log_output("Purchase order found and set to: $data->PO");
+  }
+  // Optionally set a default reference where there is no PO, e.g. 'AWS Rebilling'
+  elseif (isset($config->general->defaultReference)) {
+    $invoice->setReference($config->general->defaultReference);
   }
   $invoice->setType('ACCREC')
       ->setCurrencyCode($data->currency)
