@@ -232,7 +232,7 @@ foreach ($accounts as $client => $data) {
         $line_item->setTaxType($tax_type);
       }
       // Optionally handle tracking category
-      if ($config->provider->trackingCategory) {
+      if (isset($config->provider->trackingCategory)) {
         $tracking = new TrackingCategory($xero);
 	$tracking->setName($config->provider->trackingCategory)
           ->setOption($config->provider->trackingCategoryOption);
@@ -258,8 +258,12 @@ foreach ($accounts as $client => $data) {
   }
   // Optionally set a purchase order number
   if (isset($data->PO)) {
-    $invoice->setReference($data->PO);
+    $invoice->setReference('PO: ' . $data->PO);
     log_output("Purchase order found and set to: $data->PO");
+  }
+  // Optionally set a default reference where there is no PO, e.g. 'AWS Rebilling'
+  elseif (isset($config->general->defaultReference)) {
+    $invoice->setReference($config->general->defaultReference);
   }
   $invoice->setType('ACCREC')
       ->setCurrencyCode($data->currency)
