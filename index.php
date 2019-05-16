@@ -6,6 +6,7 @@ use XeroPHP\Models\Accounting\Invoice;
 use XeroPHP\Models\Accounting\InvoiceReminder;
 use XeroPHP\Models\Accounting\Invoice\LineItem;
 use XeroPHP\Models\Accounting\Contact;
+use XeroPHP\Models\Accounting\TrackingCategory;
 use XeroPHP\Application\PrivateApplication;
 
 //define('DS', DIRECTORY_SEPARATOR);
@@ -229,6 +230,13 @@ foreach ($accounts as $client => $data) {
       // @TODO: we ought to check the tax settings of the AccountCode in config.json and react accordingly.
       if ($tax_type != 'CAPEXOUTPUT2') {
         $line_item->setTaxType($tax_type);
+      }
+      // Optionally handle tracking category
+      if ($config->provider->trackingCategory) {
+        $tracking = new TrackingCategory($xero);
+	$tracking->setName($config->provider->trackingCategory)
+          ->setOption($config->provider->trackingCategoryOption);
+        $line_item->addTracking($tracking);
       }
       // Build the rest of the line item
       $line_item->setDescription($aws_item['Keys'][0])
