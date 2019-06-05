@@ -234,7 +234,7 @@ foreach ($accounts as $client => $data) {
       // Optionally handle tracking category
       if (isset($config->provider->trackingCategory)) {
         $tracking = new TrackingCategory($xero);
-	      $tracking->setName($config->provider->trackingCategory)
+        $tracking->setName($config->provider->trackingCategory)
             ->setOption($config->provider->trackingCategoryOption);
         $line_item->addTracking($tracking);
       }
