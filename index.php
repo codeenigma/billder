@@ -234,8 +234,8 @@ foreach ($accounts as $client => $data) {
       // Optionally handle tracking category
       if (isset($config->provider->trackingCategory)) {
         $tracking = new TrackingCategory($xero);
-	$tracking->setName($config->provider->trackingCategory)
-          ->setOption($config->provider->trackingCategoryOption);
+	      $tracking->setName($config->provider->trackingCategory)
+            ->setOption($config->provider->trackingCategoryOption);
         $line_item->addTracking($tracking);
       }
       // Build the rest of the line item
@@ -264,6 +264,10 @@ foreach ($accounts as $client => $data) {
   // Optionally set a default reference where there is no PO, e.g. 'AWS Rebilling'
   elseif (isset($config->general->defaultReference)) {
     $invoice->setReference($config->general->defaultReference);
+  }
+  // Optionally set the status of the invoice
+  if (isset($config->provider->defaultStatus)) {
+    $invoice->setStatus($config->provider->defaultStatus);
   }
   $invoice->setType('ACCREC')
       ->setCurrencyCode($data->currency)

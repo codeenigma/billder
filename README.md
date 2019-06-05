@@ -54,6 +54,7 @@ These are the *recommended* filenames for these files and both filenames are ign
     'incomeCategory' : 'XXX', // the Xero accounting category code, remove if not required
     'trackingCategory' : 'Department', // optional tracking category - if you provide one, you must also provide the option to use:
     'trackingCategoryOption' : 'Systems', // optional tracking option to apply to line items
+    'defaultStatus' : 'SUBMITTED', // optional invoice status to use (defaults to 'DRAFT')
     'oauth' : {
       'client': {
         'id': 'abcfdefghijklmnop', // your FreeAgent app OAuth identifier
