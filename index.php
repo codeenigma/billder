@@ -256,12 +256,12 @@ foreach ($accounts as $client => $data) {
   foreach ($line_items as $line_item) {
     $invoice->addLineItem($line_item);
   }
-  // Optionally set a purchase order number
-  if (isset($data->PO)) {
-    $invoice->setReference('PO: ' . $data->PO);
-    log_output("Purchase order found and set to: $data->PO");
+  // Optionally set a reference, e.g. a purchase order number
+  if (isset($data->reference)) {
+    $invoice->setReference($data->reference);
+    log_output("Reference found and set to: $data->reference");
   }
-  // Optionally set a default reference where there is no PO, e.g. 'AWS Rebilling'
+  // Optionally set a default reference where there is no account specific one, e.g. 'AWS Rebilling'
   elseif (isset($config->general->defaultReference)) {
     $invoice->setReference($config->general->defaultReference);
   }

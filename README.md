@@ -46,7 +46,7 @@ These are the *recommended* filenames for these files and both filenames are ign
   'general' : {
     'costPadding' : 1.02, // set to 1 to disable, we pad by 2% because AWS convert to GBP with Visa rate
     'includeTax'  : false, // flag for if we should include sales tax in rebilling or not
-    'defaultReference' : 'AWS rebilling' // optional default reference to add to all invoices without a PO (see below for PO support)
+    'defaultReference' : 'AWS rebilling' // optional default reference to add to all invoices without a reference (see below for per-account references)
   },
   // Provider settings
   'provider' : {
@@ -76,31 +76,31 @@ In this example the accounts data file is `accounts.json` because we have specif
  *
  * Xero uses ISO currency codes: https://www.xe.com/iso4217.php
  *
- * AWS      : the AWS account number to bill or null if not an Organizations account
- * contact  : the Xero GUID of the contact record for the same organisation
- * currency : the 3 letter ISO currency code
- * VAT      : either false or a decimal for the sales tax rate, e.g. 1.2 for 20%
- * EU       : boolean to say whether organisation is EC area or not
- * PO       : optional Purchase Order number to be included as a reference
+ * AWS       : the AWS account number to bill or null if not an Organizations account
+ * contact   : the Xero GUID of the contact record for the same organisation
+ * currency  : the 3 letter ISO currency code
+ * VAT       : either false or a decimal for the sales tax rate, e.g. 1.2 for 20%
+ * EU        : boolean to say whether organisation is EC area or not
+ * reference : optional reference, e.g. a PO number, to be included for this account
  *
  * Note, you need to remove this doc block and the inline comments if you use this as a template.
  */
 
 {
   'Customer1' : {
-    'AWS'      : 'XXXXXXXXXXXX',
-    'contact'  : '1abc234a-b56c-123a-1a23-423b9729e7a9',
-    'currency' : 'GBP', // billing in GBP, so we will run a currency conversion
-    'VAT'      : 1.2, // customer will be charged 20% VAT
-    'EU'       : false, // customer is not in the EC
-    'PO'       : '12345678' // customer provided PO number
+    'AWS'       : 'XXXXXXXXXXXX',
+    'contact'   : '1abc234a-b56c-123a-1a23-423b9729e7a9',
+    'currency'  : 'GBP', // billing in GBP, so we will run a currency conversion
+    'VAT'       : 1.2, // customer will be charged 20% VAT
+    'EU'        : false, // customer is not in the EC
+    'reference' : 'PO: 12345678' // customer provided PO number
   },
   'Customer2' : {
-    'AWS'      : 'XXXXXXXXiXXXX',
-    'contact'  : '2def567x-b56c-123a-1a23-423b9729e7a9',
-    'currency' : 'USD',
-    'VAT'      : false, // customer will not be charged VAT
-    'EU'       : true // invoice items will be marked as EC for VAT purposes
+    'AWS'       : 'XXXXXXXXiXXXX',
+    'contact'   : '2def567x-b56c-123a-1a23-423b9729e7a9',
+    'currency'  : 'USD',
+    'VAT'       : false, // customer will not be charged VAT
+    'EU'        : true // invoice items will be marked as EC for VAT purposes
   }
 }
 ```
