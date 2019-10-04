@@ -5,11 +5,12 @@ Fetches billing information from AWS on demand and creates a Xero invoice. Pull 
 
 1. You have an AWS account with AWS Organizations enabled
 2. You have also enabled the AWS Cost Explorer
-3. You have an IAM user on your main account with [access to the Cost Explorer API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-permissions-ref.html#example-policy-ce-api)
-4. You have a Xero account
-5. You have created a user on your Xero account for use by the application
-6. You have [created a key pair for a Xero app](https://developer.xero.com/documentation/api-guides/create-publicprivate-key)
-7. You have created and registered a private app on the [Xero Developer Portal](https://developer.xero.com/myapps)
+3. You have enabled IAM user [access to Billing Information](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/grantaccess.html#ControllingAccessWebsite-Activate) (you need to be the account root user)
+4. You have an IAM user on your main account with [access to the Cost Explorer API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-permissions-ref.html#example-policy-ce-api)
+5. You have a Xero account
+6. You have created a user on your Xero account for use by the application
+7. You have [created a key pair for a Xero app](https://developer.xero.com/documentation/api-guides/create-publicprivate-key)
+8. You have created and registered a private app on the [Xero Developer Portal](https://developer.xero.com/myapps)
 
 ## Installation
 
