@@ -103,7 +103,7 @@ foreach ($accounts as $client => $data) {
   // Currency look-up
   if ($data->currency != 'USD') {
     $curl = new Curl\Curl();
-    $curl->get('https://frankfurter.app/current', array(
+    $curl->get('https://api.frankfurter.app/latest', array(
       'from' => 'USD',
       'to' => $data->currency,
     ));
