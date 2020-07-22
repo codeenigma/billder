@@ -80,7 +80,7 @@ In this example the accounts data file is `accounts.json` because we have specif
  * AWS       : the AWS account number to bill or null if not an Organizations account
  * contact   : the Xero GUID of the contact record for the same organisation
  * currency  : the 3 letter ISO currency code
- * VAT       : either false or a decimal for the sales tax rate, e.g. 1.2 for 20%
+ * VAT       : either true or false, no need to calculate VAT, Xero does this
  * EU        : boolean to say whether organisation is EC area or not
  * reference : optional reference, e.g. a PO number, to be included for this account
  *
@@ -92,7 +92,7 @@ In this example the accounts data file is `accounts.json` because we have specif
     'AWS'       : 'XXXXXXXXXXXX',
     'contact'   : '1abc234a-b56c-123a-1a23-423b9729e7a9',
     'currency'  : 'GBP', // billing in GBP, so we will run a currency conversion
-    'VAT'       : 1.2, // customer will be charged 20% VAT
+    'VAT'       : true, // customer will be charged VAT at at the 'CAPEXOUTPUT2' Xero rate (currently 20%)
     'EU'        : false, // customer is not in the EC
     'reference' : 'PO: 12345678' // customer provided PO number
   },
