@@ -222,10 +222,6 @@ foreach ($accounts as $client => $data) {
         $tax_type = 'NONE'; // customer VAT exempt (e.g. US-based businesses or UN body)
         log_output("$client is VAT exempt");
       }
-      else {
-        // VAT is represented as an integer in config, so needs converting to a decimal for use as a multiplier
-        $line_item_value = $line_item_value + ($line_item_value * ($data->VAT / 100)); // customer needs VAT adding to line item
-      }
       // We cannot setTaxType if our incomeCategory assumes VAT
       // @TODO: we ought to check the tax settings of the AccountCode in config.json and react accordingly.
       if ($tax_type != 'CAPEXOUTPUT2') {
